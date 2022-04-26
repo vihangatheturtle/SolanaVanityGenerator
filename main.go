@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -17,7 +19,7 @@ var genned60 = 0
 var threads = 16
 var t1 = time.Now()
 var refreshTime = time.Now()
-var searchFor = "stjkr"
+var searchFor = "mjk134"
 var closeThreads = false
 var s5avg = time.Now()
 var s10avg = time.Now()
@@ -94,6 +96,12 @@ func timer() {
 }
 
 func main() {
+	for {
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Print("Enter search string: ")
+		searchFor, _ = reader.ReadString('\n')
+		break
+	}
 	fmt.Println("Searching for:", searchFor)
 	for i := 0; i < threads; i++ {
 		go genWallet()
